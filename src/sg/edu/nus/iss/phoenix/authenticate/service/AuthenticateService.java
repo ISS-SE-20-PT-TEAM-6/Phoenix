@@ -4,12 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import sg.edu.nus.iss.phoenix.authenticate.dao.RoleDao;
-import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
-import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
-import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
+import sg.edu.nus.iss.phoenix.user.dao.RoleDao;
+import sg.edu.nus.iss.phoenix.user.dao.UserDao;
+import sg.edu.nus.iss.phoenix.user.entity.Role;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 public class AuthenticateService {
 	DAOFactoryImpl factory;

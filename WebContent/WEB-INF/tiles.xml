@@ -6,19 +6,26 @@
 	<definition name="homePage" template="/pages/layout/classic.jsp">
 		<put-attribute name="header" value="/pages/layout/header.jsp" />
 		<put-attribute name="menu" value="/pages/layout/menu.jsp" />
+		<put-attribute name="error" value="/pages/layout/error.jsp" />		
 		<put-attribute name="body" value="/pages/layout/body.jsp" />
 		<put-attribute name="footer" value="/pages/layout/footer.jsp" />
 	</definition>
 	<definition name="loginPage" extends="homePage">
-		<put-attribute name="body" value="/pages/tilepages/login.jsp" />
+		<put-attribute name="body" value="/pages/tilepages/login/login.jsp" />
 	</definition>
 	<definition name="searchrpPage" extends="homePage">
-		<put-attribute name="body" value="/pages/tilepages/searchrp.jsp" />
+		<put-attribute name="body" value="/pages/tilepages/rp/searchrp.jsp" />
 	</definition>
 	<definition name="crudrpPage" extends="homePage">
-		<put-attribute name="body" value="/pages/tilepages/crudrp.jsp" />
+		<put-attribute name="body" value="/pages/tilepages/rp/crudrp.jsp" />
 	</definition>
 	<definition name="setuprpPage" extends="homePage">
-		<put-attribute name="body" value="/pages/tilepages/setuprp.jsp" />
+		<put-attribute name="body" value="/pages/tilepages/rp/setuprp.jsp" />
 	</definition>
+	<definition name="userPage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/user/user.jsp" />
+	</definition>
+	<definition name="userListPage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/user/userlist.jsp" />
+	</definition>	
 </tiles-definitions>

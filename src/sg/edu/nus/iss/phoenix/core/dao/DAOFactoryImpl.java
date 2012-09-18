@@ -1,11 +1,11 @@
 package sg.edu.nus.iss.phoenix.core.dao;
 
-import sg.edu.nus.iss.phoenix.authenticate.dao.RoleDao;
-import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
-import sg.edu.nus.iss.phoenix.authenticate.dao.impl.RoleDaoImpl;
-import sg.edu.nus.iss.phoenix.authenticate.dao.impl.UserDaoImpl;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAOImpl;
+import sg.edu.nus.iss.phoenix.user.dao.RoleDao;
+import sg.edu.nus.iss.phoenix.user.dao.UserDao;
+import sg.edu.nus.iss.phoenix.user.dao.impl.RoleDaoImpl;
+import sg.edu.nus.iss.phoenix.user.dao.impl.UserDaoImpl;
 
 public class DAOFactoryImpl {
 	private UserDao userDAO = new UserDaoImpl();

@@ -57,8 +57,7 @@ public class ProcessController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String selection = FCUtilities.stripPath(request.getPathInfo())
 				.toLowerCase();
-		switch (selection) {
-		case "process":
+		if("process".equals(selection)) {
 			RPDelegate rpdel = new RPDelegate();
 			RadioProgram rp = new RadioProgram();
 			rp.setName(request.getParameter("name"));
@@ -78,10 +77,9 @@ public class ProcessController extends HttpServlet {
 			ArrayList<RadioProgram> data = rpdel.findAllRP();
 			request.setAttribute("rps", data);
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/pages/crudrp.jsp");
+					.getRequestDispatcher("/pages/rp/crudrp.jsp");
 			rd.forward(request, response);
-			break;
-		case "delete":
+		} else if("delete".equals(selection)) {
 			RPDelegate rpdel1 = new RPDelegate();
 			String name = request.getParameter("name");
 			RadioProgram rp1 = new RadioProgram(name);
@@ -89,18 +87,16 @@ public class ProcessController extends HttpServlet {
 			ArrayList<RadioProgram> data1 = rpdel1.findAllRP();
 			request.setAttribute("rps", data1);
 			RequestDispatcher rd1 = request
-					.getRequestDispatcher("/pages/crudrp.jsp");
+					.getRequestDispatcher("/pages/rp/crudrp.jsp");
 			rd1.forward(request, response);
-			break;
-		case "load":
+		} else if("load".equals(selection)) {
 			RPDelegate rpdel2 = new RPDelegate();
 			ArrayList<RadioProgram> data2 = rpdel2.findAllRP();
 			request.setAttribute("rps", data2);
 			RequestDispatcher rd2 = request
-					.getRequestDispatcher("/pages/crudrp.jsp");
+					.getRequestDispatcher("/pages/rp/crudrp.jsp");
 			rd2.forward(request, response);
-			break;
-		case "search":
+		} else if("search".equals(selection)) {
 			RPDelegate rdel3 = new RPDelegate();
 			RPSearchObject search3 = new RPSearchObject();
 			ArrayList<RadioProgram> list = new ArrayList<RadioProgram>();
@@ -114,18 +110,16 @@ public class ProcessController extends HttpServlet {
 			}
 			request.getSession().setAttribute("searchrplist", list);
 			RequestDispatcher rd3 = getServletContext().getRequestDispatcher(
-					"/pages/searchrp.jsp");
+					"/pages/rp/searchrp.jsp");
 			;
 			rd3.forward(request, response);
-			break;
-		default:
+		} else {
 			RPDelegate rpdel4 = new RPDelegate();
 			ArrayList<RadioProgram> data4 = rpdel4.findAllRP();
 			request.setAttribute("rps", data4);
 			RequestDispatcher rd4 = request
-					.getRequestDispatcher("/pages/crudrp.jsp");
+					.getRequestDispatcher("/pages/rp/crudrp.jsp");
 			rd4.forward(request, response);
-			break;
 		}
 	}
 

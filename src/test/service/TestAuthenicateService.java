@@ -8,9 +8,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
-import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.authenticate.service.AuthenticateService;
+import sg.edu.nus.iss.phoenix.user.entity.Role;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 public class TestAuthenicateService {
 	private User user, user1;
@@ -37,7 +37,7 @@ public class TestAuthenicateService {
 	@Test
 	public void test() {
 		user1 = new User();
-		user1.setId("catbert");
+		user1.setId("catSbert");
 		user1.setPassword("catbert");
 		AuthenticateService service = new AuthenticateService();
 		user1 = service.validateUserIdPassword(user1);

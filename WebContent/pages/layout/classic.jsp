@@ -10,9 +10,13 @@
 		<td colspan="2"><tiles:insertAttribute name="header" /></td>
 	</tr>
 	<tr>
-		<td width="15%" align="center" valign="top"><tiles:insertAttribute
-				name="menu" /></td>
-		<td valign="top"><tiles:insertAttribute name="body" /></td>
+		<td width="15%" align="center" valign="top"><tiles:insertAttribute name="menu" /></td>
+		<td valign="top">
+		<table>
+			<tr><td><tiles:insertAttribute name="error" /></td></tr>
+			<tr><td><tiles:insertAttribute name="body" /></td></tr>
+		</table>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2"><tiles:insertAttribute name="footer" /></td>

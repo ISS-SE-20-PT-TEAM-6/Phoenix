@@ -57,22 +57,29 @@ public class PhoenixFrontController extends HttpServlet {
 	}
 
 	private String chooseUseCase(String action) {
-		switch (action) {
-		case "login":
+		if("login".equals(action)) {
 			return "/LoginController/login";
-		case "searchrp":
+		} else if("searchrp".equals(action)) {
 			return "/ProcessController/search";
-		case "setuprp":
+		} else if("setuprp".equals(action)) {
 			return "/ProcessController/process";
-		case "crudrp":
+		} else if("crudrp".equals(action)) {
 			return "/CRUDRpController";
-		case "loadrp":
+		} else if("loadrp".equals(action)) {
 			return "/ProcessController/load";	
-		case "deleterp":
+		} else if("deleterp".equals(action)) {
 			return "/ProcessController/delete";
-		case "logout":
+		} else if("createuser".equals(action)) {
+			return "/UserController/create";
+		} else if("modifyuser".equals(action)) {
+			return "/UserController/modify";
+		} else if("loaduser".equals(action)) {
+			return "/UserController/load";
+		} else if("inputuser".equals(action)) {
+			return "/UserController/input";
+		} else if("logout".equals(action)) {
 			return "/LoginController/logout";
-		default:
+		} else {
 			return "/welcome.jsp";
 		}
 	}

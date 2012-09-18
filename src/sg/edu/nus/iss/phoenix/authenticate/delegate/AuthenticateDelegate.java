@@ -1,7 +1,7 @@
 package sg.edu.nus.iss.phoenix.authenticate.delegate;
 
-import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.authenticate.service.AuthenticateService;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 public class AuthenticateDelegate {
 	private AuthenticateService service;

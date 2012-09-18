@@ -15,18 +15,31 @@
 					key="caption.menu.login" />
 		</a></td>
 	</tr>
+	<c:if test="${sessionScope.user.roles[0].role=='admin'}">
+	<tr>
+		<td>
+				<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
+						key="caption.menu.maintainuser" />
+				</a>
+			</td>
+	</tr>
+	</c:if>	
 	<c:if test="${sessionScope.user.roles[0].role=='manager'}">
-		<tr>
-			<td><a href="<c:url value="/controller/searchrp"/>"> <fmt:message
+	<tr>
+		<td>
+				<a href="<c:url value="/controller/searchrp"/>"> <fmt:message
 						key="caption.menu.searchrp" />
-			</a></td>
-		</tr>
+				</a>
+			</td>
+	</tr>
 
-		<tr>
-			<td><a href="<c:url value="/controller/loadrp"/>"> <fmt:message
+	<tr>
+		<td>
+				<a href="<c:url value="/controller/loadrp"/>"> <fmt:message
 						key="caption.menu.managerp" />
-			</a></td>
-		</tr>
+				</a>
+			</td>
+	</tr>
 	</c:if>
 	<tr>
 		<td><a href="<c:url value="/controller/logout"/>"> <fmt:message

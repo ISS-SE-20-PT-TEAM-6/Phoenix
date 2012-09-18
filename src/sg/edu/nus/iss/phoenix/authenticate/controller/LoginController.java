@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sg.edu.nus.iss.phoenix.authenticate.delegate.AuthenticateDelegate;
-import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.controller.FCUtilities;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 /**
  * Servlet implementation class LoginController
