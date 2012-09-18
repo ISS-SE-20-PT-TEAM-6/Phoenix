@@ -60,27 +60,7 @@ public class UserController extends HttpServlet {
 		/**
 		 * First ensure that the user has privileges to access this screen
 		 */
-		HttpSession session = request.getSession(false);
-		boolean notAuthorized = true;
-		if((session == null) ||
-					(session.getAttribute("user") == null)) {
-			notAuthorized = true;
-		} else {
-			User currentUser = (User)session.getAttribute("user");
-			List<Role> roles = currentUser.getRoles();
-			if(roles != null) {
-				for(Role role:roles) {
-					if("admin".equals(role.getRole())) {
-						notAuthorized = false;
-						break;
-					}
-				}
-			} else {
-				notAuthorized = true;			
-			}
-		}
-		
-		if(notAuthorized) {
+		if(!isUserAuthorized(request)) {
 			AppError error = new AppError("error.noPrivilege","You are not logged in or you do not have privileges");
 			errors.add(error);
 			request.setAttribute("errors", errors);
@@ -124,12 +104,22 @@ public class UserController extends HttpServlet {
 			page = "/pages/user/user.jsp";
 		}  else if("input".equals(selection)) {
 			boolean insertUser = Boolean.valueOf(request.getParameter("insert"));
+			String action = request.getParameter("action");
 			
 			if(!insertUser) {
 				User user;
 				try {
 					user = userDelegate.getUser(request.getParameter("userid"));
 					request.setAttribute("selecteduser", user);
+					
+					/**
+					 * TODO: If delete, check if the user is assigned to any program
+					 */
+					
+					if("delete".equals(action)) {
+						AppError error = new AppError(AppError.WARNING,"warning.deleteuser", "You are about to delete the user");
+						errors.add(error);
+					}					
 				} catch (UserNotFoundException e) {
 					AppError error = new AppError(AppError.WARNING,"error.nouser", "User not found in the system");
 					errors.add(error);
@@ -149,5 +139,37 @@ public class UserController extends HttpServlet {
 					.getRequestDispatcher(page);
 		rd.forward(request, response);		
 	}	
+	
+	/**
+	 * Check if the user has access to the given function
+	 * 
+	 * @param httpRequest
+	 * @return
+	 */
+	private boolean isUserAuthorized(HttpServletRequest httpRequest) {
+		
+		/**
+		 * First ensure that the user has privileges to access this screen
+		 */
+		HttpSession session = httpRequest.getSession(false);
+		if((session == null) ||
+					(session.getAttribute("user") == null)) {
+			return false;
+		} else {
+			User currentUser = (User)session.getAttribute("user");
+			List<Role> roles = currentUser.getRoles();
+			if(roles != null) {
+				for(Role role:roles) {
+					if("admin".equals(role.getRole())) {
+						return true;
+					}
+				}
+			} else {
+				return false;	
+			}
+		}
+			
+		return false;
+	}
 
 }
