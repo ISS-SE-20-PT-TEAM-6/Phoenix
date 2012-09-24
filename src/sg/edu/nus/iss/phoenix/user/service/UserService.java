@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.core.exceptions.SystemException;
+import sg.edu.nus.iss.phoenix.user.dao.RoleDao;
 import sg.edu.nus.iss.phoenix.user.dao.UserDao;
+import sg.edu.nus.iss.phoenix.user.entity.Role;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.user.exceptions.UserAlreadyExistsException;
 import sg.edu.nus.iss.phoenix.user.exceptions.UserNotFoundException;
@@ -21,11 +23,13 @@ import sg.edu.nus.iss.phoenix.user.exceptions.UserNotFoundException;
 public class UserService {
 	DAOFactoryImpl factory;
 	UserDao udao;
+	RoleDao roleDao;
 	Logger log = Logger.getLogger(getClass().getName());
 	
 	public UserService() {
 		factory = new DAOFactoryImpl();
 		udao = factory.getUserDAO();
+		roleDao = factory.getRoleDAO();
 	}
 	
 	/**
@@ -98,6 +102,20 @@ public class UserService {
 			return udao.loadAll();
 		} catch (SQLException e) {
 			log.severe("Error occured while getting all users :"+ e.getMessage());
+			throw new SystemException(e);
+		}
+	}
+
+	/**
+	 * Get all the list of roles available in the system
+	 * 
+	 * @return	List of roles
+	 */
+	public List<Role> getAllRoles() {
+		try {
+			return roleDao.loadAll();
+		} catch (SQLException e) {
+			log.severe("Error occured while getting all roles :"+ e.getMessage());
 			throw new SystemException(e);
 		}
 	}
