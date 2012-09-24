@@ -158,11 +158,6 @@ public class UserDaoImpl implements UserDao {
 			conn.rollback();
 			throw ex;
 		}
-		
-		catch(Exception ex){
-			ex.getMessage();
-			throw ex;
-		}		
 		finally {
 			if (stmt != null)
 				stmt.close();
