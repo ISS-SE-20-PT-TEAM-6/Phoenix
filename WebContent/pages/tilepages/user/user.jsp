@@ -78,6 +78,7 @@
 					<td><fmt:message key="label.user.country" /></td>
 					<td>
 					<select name="country">
+						<option value="zz">Select a Country</option>
 						<c:forEach var="country" items="${countries}" varStatus="countrystatus">
 							<option value="${country[0]}"
 								<c:if test="${country[0] == selecteduser.country}">selected</c:if>
