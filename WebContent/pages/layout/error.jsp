@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Error Message JSP -->
 <fmt:setBundle basename="ApplicationResources" />
+<c:if test="${not empty errors}">
 <c:forEach var="error" items="${errors}" varStatus="status">
 	<c:choose>
 		<c:when test="${error.type == 0}">
@@ -21,5 +22,6 @@
   	  	</c:when>  	  	
 	</c:choose>
 </c:forEach>
+</c:if>
 
 
