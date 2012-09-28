@@ -124,5 +124,16 @@ public class Role implements Cloneable, Serializable {
 			cloned.setAccessPrivilege(new String(this.accessPrivilege));
 		return cloned;
 	}
+	
+	/**
+	 * compares two objects
+	 */
+	@Override
+	public boolean equals(Object anotherRole) {
+		if((anotherRole != null) && (anotherRole instanceof Role)) {
+			return role.equals(((Role)anotherRole).getRole());
+		}
+		return false;
+	}
 
 }

@@ -66,7 +66,7 @@ public class TestUserDAO {
 		
 		try{
 		userDao.load(user1);
-		ArrayList<Role> roles = user1.getRoles();
+		List<Role> roles = user1.getRoles();
 		Assert.assertEquals(roles.size(),2);
 		Assert.assertEquals(roles.get(0).getRole(), "presenter");
 		Assert.assertEquals(roles.get(1).getRole(), "producer");
@@ -94,7 +94,7 @@ public class TestUserDAO {
 				List<User> users = userDao.loadAll();
 				for(User user : users){
 					if(user.getId().equals("dogbert")){
-						ArrayList<Role> roles = user.getRoles();
+						List<Role> roles = user.getRoles();
 						Assert.assertEquals(roles.size(),2);
 						Assert.assertEquals(roles.get(0).getRole(), "presenter");
 						Assert.assertEquals(roles.get(1).getRole(), "producer");				
@@ -127,8 +127,8 @@ public class TestUserDAO {
 				Assert.assertEquals(luser.getHomePhone(), uniqueUser.getHomePhone());
 				Assert.assertEquals(luser.getEmailAddress(), uniqueUser.getEmailAddress());
 				
-				ArrayList<Role> lRoles = luser.getRoles();
-				ArrayList<Role> uRoles = uniqueUser.getRoles();
+				List<Role> lRoles = luser.getRoles();
+				List<Role> uRoles = uniqueUser.getRoles();
 				
 				Assert.assertEquals(lRoles.size(), uRoles.size());
 				boolean isRolesSame=false;
@@ -176,7 +176,7 @@ public class TestUserDAO {
 				luser.setEmailAddress("new email");
 				luser.setHomePhone("new Homephone No");
 				luser.setMobile("new Mobile");
-				ArrayList<Role> roles = luser.getRoles();
+				List<Role> roles = luser.getRoles();
 				roles.clear();
 				roles.add(new Role("admin"));
 				luser.setRoles(roles);
@@ -198,8 +198,8 @@ public class TestUserDAO {
 				Assert.assertEquals(luser.getHomePhone(), uuser.getHomePhone());
 				Assert.assertEquals(luser.getEmailAddress(), uuser.getEmailAddress());
 				
-				ArrayList<Role> lRoles = luser.getRoles();
-				ArrayList<Role> uRoles = uuser.getRoles();
+				List<Role> lRoles = luser.getRoles();
+				List<Role> uRoles = uuser.getRoles();
 				
 				Assert.assertEquals(lRoles.size(), uRoles.size());
 				boolean isRolesSame=false;
@@ -267,7 +267,7 @@ public class TestUserDAO {
 				List<User> users = userDao.loadAll();
 				int recs=0;	
 				for(User user : users){
-						ArrayList<Role> roles = user.getRoles();
+						List<Role> roles = user.getRoles();
 						for(Role role : roles){
 							if(role.getRole().equals("presenter"))
 								recs++;

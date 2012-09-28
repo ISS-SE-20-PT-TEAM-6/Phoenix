@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.user.delegate;
 
 import java.util.List;
 
+import sg.edu.nus.iss.phoenix.user.entity.Role;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.user.exceptions.UserAlreadyExistsException;
 import sg.edu.nus.iss.phoenix.user.exceptions.UserNotFoundException;
@@ -30,5 +31,8 @@ public class UserDelegate {
 		service.modifyUser(user);
 	}
 
+	public List<Role> getAllRoles() {
+		return service.getAllRoles();
+	}
 
 }

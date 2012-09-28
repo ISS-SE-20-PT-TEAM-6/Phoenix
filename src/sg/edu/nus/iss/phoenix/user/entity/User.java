@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.user.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User Value Object. This class is value object representing database table
@@ -30,7 +31,7 @@ public class User implements Cloneable, Serializable {
 	private String mobile;
 	private String emailAddress;
 	
-	private ArrayList<Role> roles = new ArrayList<Role>();
+	private List<Role> roles = new ArrayList<Role>();
 
 	/**
 	 * Constructors. The first one takes no arguments and provides the most
@@ -78,11 +79,11 @@ public class User implements Cloneable, Serializable {
 		this.name = nameIn;
 	}
 
-	public ArrayList<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(ArrayList<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 

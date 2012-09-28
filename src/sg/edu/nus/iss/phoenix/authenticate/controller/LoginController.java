@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.phoenix.authenticate.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import sg.edu.nus.iss.phoenix.authenticate.delegate.AuthenticateDelegate;
 import sg.edu.nus.iss.phoenix.core.controller.FCUtilities;
+import sg.edu.nus.iss.phoenix.core.ui.AppError;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 
 /**
@@ -53,8 +56,16 @@ public class LoginController extends HttpServlet {
 			user.setId(request.getParameter("id"));
 			user.setPassword(request.getParameter("password"));
 			user = ad.validateUserIdPassword(user);
-			request.getSession().setAttribute("user", user);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/home.jsp");;
+			String page = "/pages/home.jsp";
+			if(user != null) {
+				request.getSession().setAttribute("user", user);
+			} else {
+				List<AppError> errors = new ArrayList<AppError>();
+				AppError error = new AppError(AppError.ERROR, "error.invalidlogin", "Invalid username or password");
+				errors.add(error);				
+				request.setAttribute("errors", errors);
+			}
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(page);
 		    rd.forward(request, response);
 		} else {
 			 HttpSession session = request.getSession();
