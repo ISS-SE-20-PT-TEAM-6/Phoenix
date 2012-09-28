@@ -121,9 +121,9 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	public List<Schedule> loadAnnual(int year) throws SQLException {
 		connection = openConnection();
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(year,1,1);
+		calendar.set(year,0,1);
 		Date fromDate = new Date(calendar.getTime().getTime());
-		calendar.set(year,12,31);
+		calendar.set(year,11,31);
 		Date toDate = new Date(calendar.getTime().getTime());
 		String sql = "SELECT * FROM SCHEDULE WHERE programDate between ? and ? ORDER BY programDate, startTime ASC ";
 		PreparedStatement stmt = null;
