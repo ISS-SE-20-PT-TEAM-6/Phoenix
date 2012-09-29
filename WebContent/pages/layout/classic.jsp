@@ -10,20 +10,19 @@
 <script src="/phoenix/javascript/jquery.js"></script>
 <script src="/phoenix/javascript/bootstrap-datepicker.js"></script>
 <script src="/phoenix/javascript/jquery-datatable.js"></script>
-<table class="borderAll">
-	<tr>
-		<td colspan="2"><tiles:insertAttribute name="header" /></td>
-	</tr>
-	<tr>
-		<td width="15%" align="center" valign="top"><tiles:insertAttribute name="menu" /></td>
-		<td valign="top">
-		<table>
-			<tr><td><tiles:insertAttribute name="error" /></td></tr>
-			<tr><td><tiles:insertAttribute name="body" /></td></tr>
-		</table>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><tiles:insertAttribute name="footer" /></td>
-	</tr>
-</table>
+<div><tiles:insertAttribute name="header" /></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <tiles:insertAttribute name="menu" />
+    </div>
+    <div class="span10">
+      <tiles:insertAttribute name="error" />
+      <tiles:insertAttribute name="body" />
+    </div>
+  </div>
+</div>
+<div><tiles:insertAttribute name="footer" /></div>
+<script type="text/javascript">
+$('.datepicker').datepicker();
+</script>

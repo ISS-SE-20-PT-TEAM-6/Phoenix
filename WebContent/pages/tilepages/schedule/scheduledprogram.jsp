@@ -78,7 +78,6 @@
 	</c:if>
 </div>
 <script type="text/javascript">
-$('.datepicker').datepicker();
 
 /* Table initialisation */
 $(document).ready(function() {

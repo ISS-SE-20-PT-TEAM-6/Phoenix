@@ -25,8 +25,8 @@
 					value="${param['name']}" size=15 maxlength=20></td>
 			</tr>
 			<tr >
-				<td colspan="2" align="center"><input type="submit" value="Submit"> &nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="Reset"></td>
+				<td colspan="2" align="center"><input type="submit" value="Submit" class="btn btn-primary"> &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="Reset" class="btn"></td>
 			</tr>
 		</table>
 	</form>

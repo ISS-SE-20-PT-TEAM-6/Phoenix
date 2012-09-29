@@ -5,69 +5,55 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <fmt:setBundle basename="ApplicationResources" />
-
-<h3 align="center">
-	<fmt:message key="caption.menu" />
-</h3>
-<table class="framed">
-	<tr>
-		<td><a href="<c:url value="/pages/login.jsp"/>"> <fmt:message
-					key="caption.menu.login" />
-		</a></td>
-	</tr>
-	<c:if test="${sessionScope.user.roles[0].role=='admin'}">
-	<tr>
-		<td>
-				<a href="<c:url value="/controller/inputuser?insert=true"/>"> <fmt:message
+<div class="nav nav-list bs-docs-sidenav affix">
+<ul class="nav nav-tabs nav-stacked">
+<c:if test="${sessionScope.user==null}">
+<li><a href="<c:url value="/pages/login.jsp"/>"> <fmt:message
+					key="caption.menu.login" /></a></li>
+</c:if>
+<c:if test="${sessionScope.user.roles[0].role=='admin'}">
+<li>
+<a href="<c:url value="/controller/inputuser?insert=true"/>"> <fmt:message
 						key="caption.menu.createuser" />
 				</a>
-			</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
+</li>
+<li>
+<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
 					key="caption.menu.modifyuser" />
 			</a>
-		</td>
-	</tr>
-	<tr>
-		<td>
+</li>
+<li>
+
 			<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
 					key="caption.menu.deleteuser" />
 			</a>
-		</td>
-	</tr>		
-	</c:if>	
-	<c:if test="${sessionScope.user.roles[0].role=='manager'}">
-	<tr>
-		<td>
+</li>
+</c:if>
+<c:if test="${sessionScope.user.roles[0].role=='manager'}">
+<li>
+
 				<a href="<c:url value="/controller/searchrp"/>"> <fmt:message
 						key="caption.menu.searchrp" />
 				</a>
-			</td>
-	</tr>
-
-	<tr>
-		<td>
+</li>
+<li>
 				<a href="<c:url value="/controller/loadrp"/>"> <fmt:message
 						key="caption.menu.managerp" />
 				</a>
-			</td>
-	</tr>
-
-	<tr>
-		<td>
+</li>
+<li>
 				<a href="<c:url value="/controller/scheduledprogram"/>"> <fmt:message
 						key="caption.menu.scheduledprogram" />
 				</a>
-			</td>
-	</tr>
-	</c:if>
-	<tr>
-		<td><a href="<c:url value="/controller/logout"/>"> <fmt:message
+</li>
+</c:if>
+<c:if test="${sessionScope.user!=null}">
+<li><a href="<c:url value="/controller/logout"/>"> <fmt:message
 					key="caption.menu.logout" />
-		</a></td>
-	</tr>
-</table>
+		</a>
+</li>
+</c:if>
+</ul>
+</div>
 
 
