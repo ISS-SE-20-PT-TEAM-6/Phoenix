@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-import oracle.jrockit.jfr.settings.JSONElement;
 
 import sg.edu.nus.iss.phoenix.user.entity.Role;
 import sg.edu.nus.iss.phoenix.user.entity.User;
@@ -191,7 +190,6 @@ public class Schedule implements Cloneable, Serializable {
 	}
 
 	public String toJson() {
-
 		
 		StringBuffer out = new StringBuffer("{");
 		out.append("\"scheduleid\" : \"" + this.getScheduleID() + "\",");

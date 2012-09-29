@@ -41,7 +41,7 @@ public class ScheduleController extends HttpServlet{
 		String option=request.getParameter("option");
 		
 		try{
-			if(option.equals("create") || option.equals("createByCopy") ){
+			if(option.equals("create") || option.equals("createByCopy") || option.equals("modify")){
 				Schedule schedule = new Schedule();
 				schedule.setScheduleID(request.getParameter("scheduleId"));
 				schedule.setProgramName(request.getParameter("programName"));

@@ -7,9 +7,9 @@
 	
 <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet"
 	type="text/css" />
-<script src="/phoenix/javascript/jquery.js"></script>
-<script src="/phoenix/javascript/bootstrap-datepicker.js"></script>
-<script src="/phoenix/javascript/jquery-datatable.js"></script>
+<script src="../javascript/jquery.js"></script>
+<script src="../javascript/bootstrap-datepicker.js"></script>
+<script src="../javascript/jquery-datatable.js"></script>
 <div><tiles:insertAttribute name="header" /></div>
 <div class="container-fluid">
   <div class="row-fluid">

@@ -42,11 +42,12 @@
 						key="caption.menu.managerp" />
 				</a>
 </li>
+<!-- 
 <li>
 				<a href="<c:url value="/controller/scheduledprogram"/>"> <fmt:message
 						key="caption.menu.scheduledprogram" />
 				</a>
-</li>
+</li> -->
 <li> 
   <a href="<c:url value="/controller/initMaintainSchedule?option=create" />"> 
   <fmt:message key="title.createSchedule"/></a>

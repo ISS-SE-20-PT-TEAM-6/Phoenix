@@ -68,13 +68,16 @@
    }
    
    function afterScheduleSearch(schedule){
+	   var date = new Date(schedule.programDate);
+	   var pDate =('0'+(date.getMonth()+1)).substr(-2,2)+'/'+('0'+date.getDate()).substr(-2,2)+'/'+date.getFullYear();
+	  console.log(pDate);
 	   document.getElementById('scheduleId').value=schedule.scheduleid ;
 	   document.getElementById('programName').value=schedule.programName;
-	   document.getElementById('programDate').value=schedule.programDate;
-	   document.getElementById('presenterName').value=schedule.presenterName;
-	   document.getElementById('producerName').value=schedule.producerName;
-	   document.getElementById('startTime').value=schedule.startTime;
-	   document.getElementById('endTime').value=schedule.endTime;
+	   document.getElementById('programDate').value=pDate;
+	   document.getElementById('presenterName').value=schedule.presenter;
+	   document.getElementById('producerName').value=schedule.producer;
+	   document.getElementById('startTime').value=(schedule.startTime).substring(0,5);
+	   document.getElementById('endTime').value=schedule.endTime.substring(0,5);
 	   
 
 	   
@@ -83,6 +86,7 @@
    
    
 </script>
+<div>
 <form action="${pageContext.request.contextPath}/controller/maintainSchedule" method="post">
 
 <table>
@@ -107,7 +111,7 @@
              onClick="javaScript:searchProgram();" src="${pageContext.request.contextPath}/img/search.gif" /></td>
 	  
 	  <td><fmt:message key="label.schedule.programDate"/> </td>
-      <td><input type="text" id="programDate" name="programDate" value="${param['name']}" size=15 maxlength=20></td>
+      <td><input type="text" id="programDate" name="programDate" value="${param['name']}" size=30 maxlength=20 class="datepicker"></td>
 
 </tr>
 <tr>
@@ -152,6 +156,7 @@
 </table>
 <input type="hidden" name="option" value="${param.option}" />
 
-</form>				
+</form>	
+</div>			
 </body>
 </html>

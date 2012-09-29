@@ -62,8 +62,8 @@
 				<tr class="odd gradeX"  >
 					<td><input type="radio" name="programId" value="${programslot.scheduleID}" class="programId"/></td>
 					<td>${programslot.programName}</td>
-					<td>${programslot.programDate}</td>
-					<td>${programslot.presenter}</td>
+					<td> <fmt:formatDate pattern="MM/dd/yyyy" value ="${programslot.programDate}"/></td>
+					<td>${programslot.presenter} </td>
 					<td>${programslot.producer}</td>
 					<td>${programslot.startTime}</td>
 					<td>${programslot.endTime}</td>
@@ -104,21 +104,17 @@ $(document).ready(function() {
 			  url: "${pageContext.request.contextPath}/controller/selectschedule?scheduleID=" + val,
 			  dataType: "json",
 			  async: true,
-			  beforeSend: function ( xhr ) {
-			    alert('before');
-			  }
 			}).done(function ( data ) {
-				alert('success');
+				console.log(data);
 				var jsonO = $.parseJSON(data.responseText);
 				if (self.opener){
-					self.opener.afterScheduleSearch(jsonO);
+					self.opener.afterScheduleSearch(data);
 			    	window.close();
 				}
 			}).error(function ( data ) {
 				var jsonO = $.parseJSON(data.responseText);
 				if (self.opener){
-					self.opener.afterScheduleSearch(jsonO);
-			    	window.close();
+					self.opener.afterScheduleSearch(data);
 				}
 				console.log(data);
 			});
