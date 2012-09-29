@@ -32,6 +32,23 @@ public class TestUserService {
 		userService = new UserService();
 	}
 	
+	@After
+	public void tearDown() throws Exception {
+		deleteDummyUser();
+	}
+	
+	/**
+	 * Finally delete the dummy user that was created
+	 */
+	private void deleteDummyUser() {
+		try {
+			System.out.println("Deleting dummy user");
+			userService.deleteUser("alfred");
+		} catch (UserNotFoundException e) {
+			//Nothing to do
+		}
+	}
+	
 	@Test
 	public void testGetUserDetail() {
 		try {
@@ -149,6 +166,5 @@ public class TestUserService {
 		List<User> userList = userService.getAllUsers();
 		
 		Assert.assertNotNull(userList);
-		Assert.assertEquals(4, userList.size());
 	}
 }
