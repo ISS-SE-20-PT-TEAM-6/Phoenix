@@ -32,7 +32,7 @@ public class ScheduleSerivce {
 	public List<Schedule> searchPrograms(ScheduleSearchObject searchObj) throws ParseException, SQLException {
 		if(searchObj.getEndDate().isEmpty() && !searchObj.getStartDate().isEmpty()){
 			
-			DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 			Date d = df.parse(searchObj.getStartDate()); 
 			return scheduleDAO.loadWeekly(d);
 		}else{
