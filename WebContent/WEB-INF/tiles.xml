@@ -30,5 +30,8 @@
 	</definition>
 	<definition name="scheduledProgramPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/schedule/scheduledprogram.jsp" />
-	</definition>	
+	</definition>
+	<definition name="presenterProducerPage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/user/presenterproducer.jsp" />
+	</definition>
 </tiles-definitions>

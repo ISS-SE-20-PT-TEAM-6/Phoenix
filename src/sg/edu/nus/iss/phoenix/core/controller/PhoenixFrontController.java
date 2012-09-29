@@ -83,6 +83,8 @@ public class PhoenixFrontController extends HttpServlet {
 			return "/ReviewSelectScheduledProgramController/scheduleselected";
 		}  else if("searchschedule".equals(action)) {
 			return "/ReviewSelectScheduledProgramController/search";
+		}   else if("presenterproducer".equals(action)) {
+			return "/ReviewSelectPresenterProducerController/presenter";
 		} else if("logout".equals(action)) {
 			return "/LoginController/logout";
 		} else {

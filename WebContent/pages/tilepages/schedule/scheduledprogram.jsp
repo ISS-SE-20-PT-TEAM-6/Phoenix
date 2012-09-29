@@ -15,7 +15,7 @@
 <h1>Search Scheduled Program</h1>
 	<form action="${pageContext.request.contextPath}/controller/searchschedule" method=post class="form-horizontal">
 	
-	  <div class="control-group">
+	  <div class="control-group" style="display:none">
 	  	<label class="control-label" for="programName"><fmt:message key="label.program.name"/></label>
 	    <div class="controls">
 	      <input type="text" name="programName" placeholder="Program Name">
@@ -24,19 +24,15 @@
 	  <div class="control-group">
 	  	<label class="control-label" for="startdate"><fmt:message key="label.startdate"/></label>
 	    <div class="controls">
-	      <input type="text" name="startdate" placeholder="mm/dd/yyyy" class="datepicker">
+	      <input type="text" name="startdate" placeholder="mm/dd/yyyy" class="datepicker"> <input type="submit" value="Search" class="btn btn-primary" />
 	    </div>
 	  </div>
-	  <div class="control-group">
+	  <div class="control-group" style="display:none">
 	  	<label class="control-label" for="enddate"><fmt:message key="label.enddate"/></label>
 	    <div class="controls">
 	      <input type="text" name="enddate" placeholder="mm/dd/yyyy" class="datepicker">
 	    </div>
 	  </div>
-	  <div class="control-group">
-	    <div class="controls">
-	     <input type="submit" value="Search" class="btn btn-primary" />
-	    </div>
 	  </div>
 	</form>
 	<c:if test="${! empty  searchrpslist}">
