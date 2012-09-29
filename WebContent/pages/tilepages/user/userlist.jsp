@@ -15,6 +15,7 @@
 	</h2>
     <c:url var="url" scope="page" value="/controller/inputuser">
             <c:param name="insert" value="true"/>
+            <c:param name="action" value="create"/>
     </c:url>
     <a href="${url}"><fmt:message key="label.user.create"/></a>
     <br/><br/>	

@@ -13,12 +13,23 @@
 <title><fmt:message key="title.modifyuser" /></title>
 </head>
 <body>
-	<c:if test="${param['insert']=='true'}">
-		<form action="${pageContext.request.contextPath}/controller/createuser" method=post>
-	</c:if>	
 	<c:if test="${param['insert']=='false'}">
-		<form action="${pageContext.request.contextPath}/controller/modifyuser" method=post>
+		<c:if test="${param['action']=='create'}">
+			<form action="${pageContext.request.contextPath}/controller/createuser" method=post>
+		</c:if>	
+		<c:if test="${param['action']=='modify'}">
+			<form action="${pageContext.request.contextPath}/controller/modifyuser" method=post>
+		</c:if>
+		<c:if test="${param['action']=='delete'}">
+			<form action="${pageContext.request.contextPath}/controller/deleteuser" method=post>
+		</c:if>
+	</c:if>
+	<c:if test="${param['insert']=='true'}">
+		<c:if test="${param['action']=='create'}">
+			<form action="${pageContext.request.contextPath}/controller/createuser" method=post>
+		</c:if>	
 	</c:if>	
+		
 		<center>
 			<table cellpadding=4 cellspacing=2 border=0>
 				<tr>
@@ -119,8 +130,8 @@
 				
 				</table>
 		</center>
-		<input type="hidden" name="action" value="${param['action']}" />
-		<c:if test="${empty param['action']}">
+		<input type="hidden" name="action" value="false" />
+		<c:if test="${param['action'] == 'create'}">
 			<input type="submit" value="Save"> 
 			<input type="button" value="Cancel" onclick="javascript:history.back(-1)" >		
 			<input type="reset" value="Reset">

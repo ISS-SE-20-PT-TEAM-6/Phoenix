@@ -51,6 +51,7 @@ public class PhoenixFrontController extends HttpServlet {
 		String action = FCUtilities.stripPath(pathInfo);
 		System.out.println("PATH" + pathInfo);
 		System.out.println("ACTION" + action);
+		System.out.println("querystring: "+ request.getQueryString());
 		String result = chooseUseCase(action,request.getParameter("option"));
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(result);
 		rd.forward(request, response);
@@ -73,6 +74,8 @@ public class PhoenixFrontController extends HttpServlet {
 			return "/UserController/create";
 		} else if("modifyuser".equals(action)) {
 			return "/UserController/modify";
+		} else if("deleteuser".equals(action)) {
+			return "/UserController/delete";
 		} else if("loaduser".equals(action)) {
 			return "/UserController/load";
 		} else if("inputuser".equals(action)) {

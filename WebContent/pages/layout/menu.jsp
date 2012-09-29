@@ -13,19 +13,14 @@
 </c:if>
 <c:if test="${sessionScope.user.roles[0].role=='admin'}">
 <li>
-<a href="<c:url value="/controller/inputuser?insert=true"/>"> <fmt:message
+				<a href="<c:url value="/controller/inputuser?insert=true&action=create"/>"> <fmt:message
 						key="caption.menu.createuser" />
 				</a>
 </li>
 <li>
-<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
-					key="caption.menu.modifyuser" />
-			</a>
-</li>
-<li>
 
 			<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
-					key="caption.menu.deleteuser" />
+					key="caption.menu.selectuser" />
 			</a>
 </li>
 

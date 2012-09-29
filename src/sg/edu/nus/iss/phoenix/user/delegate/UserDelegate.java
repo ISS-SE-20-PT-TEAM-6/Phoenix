@@ -31,6 +31,10 @@ public class UserDelegate {
 		service.modifyUser(user);
 	}
 
+	public void deleteUser(User user) throws UserAlreadyExistsException, UserNotFoundException {
+		service.deleteUser(user);
+	}
+
 	public List<Role> getAllRoles() {
 		return service.getAllRoles();
 	}

@@ -122,6 +122,10 @@ public class UserController extends HttpServlet {
 					AppError error = new AppError(AppError.ERROR, "error.nouser", "User already exists in the system");
 					errors.add(error);
 				}
+				catch (Exception e) {
+					AppError error = new AppError(AppError.ERROR, "error.nouser", "Failed to create user");
+					errors.add(error);
+				}
 			}
 		} else if("modify".equals(selection)) {
 			if(validateUserInput(request)) {
@@ -167,6 +171,9 @@ public class UserController extends HttpServlet {
 				} catch (UserNotFoundException e) {
 					AppError error = new AppError(AppError.WARNING,"error.nouser", "User not found in the system");
 					errors.add(error);
+				} catch (Exception e) {
+					AppError error = new AppError(AppError.ERROR,"error.nouser", "Failed to modify User");
+					errors.add(error);
 				}
 			}
 		}  else if("input".equals(selection)) {
@@ -203,6 +210,38 @@ public class UserController extends HttpServlet {
 			request.setAttribute("users", users);
 			
 			page = "/pages/user/userlist.jsp";
+		} else if("delete".equals(selection)) {
+			User user;
+			boolean insertUser = Boolean.valueOf(request.getParameter("insert"));
+			String action = request.getParameter("action");
+			
+			List<Role> roles = userDelegate.getAllRoles();
+			request.setAttribute("systemroles", roles);	
+			request.setAttribute("countries", getCountryList());
+
+			try {
+				user = userDelegate.getUser(request.getParameter("userid"));
+				request.setAttribute("selecteduser", user);				
+				
+				/**
+				 * TODO: If delete, check if the user is assigned to any program
+				 */
+				user = new User();
+				user.setId(request.getParameter("userid"));
+				userDelegate.deleteUser(user);
+				
+				AppError success = new AppError(AppError.SUCCESS, "success.usersaved", "User Deleted successfully");
+				errors.add(success);		
+				
+				page = "/controller/loaduser";
+			
+			} catch (UserNotFoundException e) {
+				AppError error = new AppError(AppError.WARNING,"error.nouser", "User not found in the system");
+				errors.add(error);
+			} catch (Exception e) {
+				AppError error = new AppError(AppError.ERROR,"error.nouser", "Failed to delete user");
+				errors.add(error);
+			}
 		}
 		RequestDispatcher rd = request
 					.getRequestDispatcher(page);
@@ -254,13 +293,13 @@ public class UserController extends HttpServlet {
 		}
 		boolean status = true;
 		
-		if(httpRequest.getParameter("userid") == null) {
+		if(httpRequest.getParameter("userid") == null || httpRequest.getParameter("userid").trim() == "") {
 			AppError error = new AppError(AppError.WARNING,"error.nouserid", "User id is missing");
 			errors.add(error);			
 			status = false;
 		}
 		
-		if(httpRequest.getParameter("username") == null) {
+		if(httpRequest.getParameter("username") == null || httpRequest.getParameter("username").trim() == "") {
 			AppError error = new AppError(AppError.WARNING,"error.nousername", "User name is missing");
 			errors.add(error);			
 			status = false;

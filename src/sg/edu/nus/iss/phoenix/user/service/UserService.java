@@ -88,8 +88,15 @@ public class UserService {
 	 * @param userId	User id of the user that needs to be deleted from the system
 	 * @throws UserNotFoundException
 	 */
-	public void deleteUser(String userId) throws UserNotFoundException{
-		//TODO: To be implemented by Lung Sen
+	public void deleteUser(User user) throws UserNotFoundException{
+		try {
+			udao.delete(user);
+		} catch (SQLException e) {
+			log.severe("Error occured while getting all users :"+ e.getMessage());
+			throw new SystemException(e);
+		} catch (NotFoundException e) {
+			throw new UserNotFoundException("User not found in the system");
+		}
 	}
 
 	/**
