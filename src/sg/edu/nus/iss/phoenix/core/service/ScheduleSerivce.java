@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.phoenix.maintainschedule.service;
+package sg.edu.nus.iss.phoenix.core.service;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -43,9 +43,12 @@ public class ScheduleSerivce {
 	public Schedule searchProgram(String scheduleID) {
 		try {
 			return scheduleDAO.getObject(scheduleID);
-		} catch (NotFoundException | SQLException e) {
+		} catch (NotFoundException  e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
+		}catch (SQLException exp){
+			exp.printStackTrace();
 			return null;
 		}
 	}

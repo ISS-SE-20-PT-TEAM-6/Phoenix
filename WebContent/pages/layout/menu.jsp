@@ -28,6 +28,7 @@
 					key="caption.menu.deleteuser" />
 			</a>
 </li>
+
 </c:if>
 <c:if test="${sessionScope.user.roles[0].role=='manager'}">
 <li>
@@ -45,6 +46,27 @@
 				<a href="<c:url value="/controller/scheduledprogram"/>"> <fmt:message
 						key="caption.menu.scheduledprogram" />
 				</a>
+</li>
+<li> 
+  <a href="<c:url value="/controller/initMaintainSchedule?option=create" />"> 
+  <fmt:message key="title.createSchedule"/></a>
+</li>
+<li>
+ <a href="<c:url value="/controller/initMaintainSchedule?option=createByCopy" />"> 
+	  <fmt:message key="title.createByCopySchedule"/></a>
+</li>
+
+<li>
+ <a href="<c:url value="/controller/initMaintainSchedule?option=createByCopy" />"> 
+	  <fmt:message key="title.createByCopySchedule"/></a>
+</li>
+<li>
+<a href="<c:url value="/controller/initMaintainSchedule?option=modify" />"> 
+	  <fmt:message key="title.modifySchedule"/></a>
+</li>
+<li>
+ <a href="<c:url value="/controller/initMaintainSchedule?option=delete" />"> 
+	  <fmt:message key="title.deleteSchedule"/></a>
 </li>
 </c:if>
 <c:if test="${sessionScope.user!=null}">

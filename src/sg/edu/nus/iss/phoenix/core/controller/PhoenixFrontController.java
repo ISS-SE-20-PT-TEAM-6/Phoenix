@@ -51,12 +51,12 @@ public class PhoenixFrontController extends HttpServlet {
 		String action = FCUtilities.stripPath(pathInfo);
 		System.out.println("PATH" + pathInfo);
 		System.out.println("ACTION" + action);
-		String result = chooseUseCase(action);
+		String result = chooseUseCase(action,request.getParameter("option"));
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(result);
 		rd.forward(request, response);
 	}
 
-	private String chooseUseCase(String action) {
+	private String chooseUseCase(String action,String option) {
 		if("login".equals(action)) {
 			return "/LoginController/login";
 		} else if("searchrp".equals(action)) {
@@ -87,7 +87,17 @@ public class PhoenixFrontController extends HttpServlet {
 			return "/ReviewSelectPresenterProducerController/presenter";
 		} else if("logout".equals(action)) {
 			return "/LoginController/logout";
-		} else {
+		} if(action.equals("initMaintainSchedule")){
+			return "/pages/MaintainSchedule.jsp";
+		}else if (action.equals("maintainSchedule")){
+			return "/ScheduleController/"+option;
+		}else if(action.equals("searchProgram")){
+			return "/SelectRadioProgramController/select";
+		}else if(action.equals("searchPresenter")){
+			return "/SelectPresenterProducerController/select";
+		}else if(action.equals("searchSchedule")){
+			return "/ReviewSelectScheduledProgramController/scheduled";
+		}else {
 			return "/welcome.jsp";
 		}
 	}

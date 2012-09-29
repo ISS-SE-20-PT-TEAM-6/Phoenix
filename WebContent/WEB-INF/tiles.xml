@@ -28,10 +28,17 @@
 	<definition name="userListPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/user/userlist.jsp" />
 	</definition>
+	<!--  
 	<definition name="scheduledProgramPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/schedule/scheduledprogram.jsp" />
 	</definition>
+	
+	-->
 	<definition name="presenterProducerPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/user/presenterproducer.jsp" />
+	</definition>
+	<definition name = "maintainSchedule" extends="homePage">
+	 <put-attribute name="body" value="/pages/tilepages/schedule/MaintainScheduleBody.jsp" />
+	 
 	</definition>
 </tiles-definitions>

@@ -23,6 +23,53 @@
 			sg.edu.nus.iss.phoenix.core.controller.PhoenixFrontController</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+    <servlet-name>scheduleController</servlet-name>
+    <servlet-class>
+			sg.edu.nus.iss.phoenix.maintainschedule.controller.ScheduleController
+		</servlet-class>
+  </servlet>
+  
+   <servlet>
+    <servlet-name>SelectPresenterProducerController</servlet-name>
+    <servlet-class>
+			sg.edu.nus.iss.phoenix.core.controller.ReviewSelectPresenterProducerController
+		</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>SelectRadioProgramController</servlet-name>
+    <servlet-class>
+			sg.edu.nus.iss.phoenix.core.controller.ReviewSelectRadioProgramController
+		</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>SelectScheduleController</servlet-name>
+    <servlet-class>
+			sg.edu.nus.iss.phoenix.core.controller.ReviewSearchScheduleController
+		</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>scheduleController</servlet-name>
+    <url-pattern>/ScheduleController/*</url-pattern>
+  </servlet-mapping>
+
+   <servlet-mapping>
+    <servlet-name>SelectPresenterProducerController</servlet-name>
+    <url-pattern>/SelectPresenterProducerController/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>SelectRadioProgramController</servlet-name>
+    <url-pattern>/SelectRadioProgramController/*</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>SelectScheduleController</servlet-name>
+    <url-pattern>/SelectScheduleController/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>frontController</servlet-name>
     <url-pattern>/controller/*</url-pattern>

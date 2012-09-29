@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.phoenix.maintainschedule.controller;
+package sg.edu.nus.iss.phoenix.core.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sg.edu.nus.iss.phoenix.core.controller.FCUtilities;
-import sg.edu.nus.iss.phoenix.maintainschedule.delegate.ScheduleDelegate;
+import sg.edu.nus.iss.phoenix.core.delegate.ScheduleDelegate;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.Schedule;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ScheduleSearchObject;
 import sg.edu.nus.iss.phoenix.user.exceptions.DAOException;
@@ -62,7 +61,7 @@ public class ReviewSelectScheduledProgramController extends HttpServlet {
 	
 	private void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws DAOException {
-		String searchSchedule = "/pages/schedule/scheduledprogram.jsp";
+		String searchSchedule = "/pages/tilepages/schedule/scheduledprogram.jsp";
 		String maintain = "/pages/home.jsp";
 		String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
 		RequestDispatcher rd = request.getRequestDispatcher(searchSchedule);

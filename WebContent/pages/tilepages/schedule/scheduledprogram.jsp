@@ -9,6 +9,14 @@
 
 <fmt:setBundle basename="ApplicationResources" />
 <title><fmt:message key="title.scheduledprogram" /></title>
+<link href="<c:url value='/css/main.css'/>" rel="stylesheet"
+	type="text/css" />
+	
+<link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet"
+	type="text/css" />
+<script src="../javascript/jquery.js"></script>
+<script src="../javascript/bootstrap-datepicker.js"></script>
+<script src="../avascript/jquery-datatable.js"></script>
 </head>
 <body>
 <div>
@@ -51,7 +59,7 @@
 	</thead>
 	<tbody>
 			<c:forEach var="programslot" items="${searchrpslist}" varStatus="status">
-				<tr class="odd gradeX">
+				<tr class="odd gradeX"  >
 					<td><input type="radio" name="programId" value="${programslot.scheduleID}" class="programId"/></td>
 					<td>${programslot.programName}</td>
 					<td>${programslot.programDate}</td>
@@ -66,7 +74,7 @@
 	<form id="selectSchedule" action="${pageContext.request.contextPath}/controller/selectschedule" method=post>
 		<div class="control-group">
 	    <div class="controls">
-	     <input type="submit" value="Select" class="btn btn-primary" />
+	     <input type="button" value="Select" class="btn btn-primary" id="btnSelectProgram" />
 	    </div>
 	  </div>
 		<input type="hidden" name="scheduleID" id="selectedProgram" />
@@ -88,9 +96,23 @@ $(document).ready(function() {
 	
 	$('.programId').click( function() {
         $("#selectedProgram").val(this.value);
-        
     } );
+	
+	$("#btnSelectProgram").click(function(){
+		var val = $("#selectedProgram").val();
+		$.ajax({
+			  url: "${pageContext.request.contextPath}/controller/selectschedule?scheduleID=" + val,
+			  beforeSend: function ( xhr ) {
+			    alert('before');
+			  }
+			}).done(function ( data ) {
+				alert("done");
+			    window.close();
+			});
+		
+	});
 } );
+$('.datepicker').datepicker();
 </script>
 </body>
 </html>
