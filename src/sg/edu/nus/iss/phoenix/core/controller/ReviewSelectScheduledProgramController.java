@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.phoenix.core.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -94,12 +95,16 @@ public class ReviewSelectScheduledProgramController extends HttpServlet {
 			}else if(selection.equals("scheduleselected")){
 				String scheduleID = request.getParameter("scheduleID");
 				System.out.println(scheduleID);
+				String jsonObj = "";
 				if(!scheduleID.isEmpty()){
 					Schedule schedule = scheduleDelegate.searchProgram(scheduleID);
 					request.getSession().setAttribute("selectedschedule", schedule);
+					jsonObj = schedule.toJson();
 				}
-				RequestDispatcher rdmaintain = request.getRequestDispatcher(maintain);
-				rdmaintain.forward(request, response);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				System.out.println(jsonObj);
+				response.getWriter().write(jsonObj);
 			}
 		} 
 		catch (ServletException e) 
