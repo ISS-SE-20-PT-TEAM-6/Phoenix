@@ -2,6 +2,7 @@ package test.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.util.UUID;
 
 import junit.framework.Assert;
 
@@ -17,7 +18,8 @@ import sg.edu.nus.iss.phoenix.user.entity.User;
 
 
 public class TestUserDAO {
-	private User user, user1, uniqueUser;
+	private User user, user1, uniqueUser, uniqueUser1 ;
+;
 	private  UserDao userDao;
 	
 
@@ -34,9 +36,8 @@ public class TestUserDAO {
 		//user.setAccessPrivilege("");
 		
 		uniqueUser = new User();
-		Date curDate = new Date();
-		uniqueUser.setId(curDate.toString());
-		uniqueUser.setName("Test by Time");
+		uniqueUser.setId(UUID.randomUUID().toString());
+		uniqueUser.setName("Test U");
 		uniqueUser.setPassword("password");
 		uniqueUser.setAddress1("Address1");
 		uniqueUser.setAddress2("Address2");
@@ -51,25 +52,51 @@ public class TestUserDAO {
 		ulist.add(new Role("presenter") );
 		ulist.add(new Role("producer") );
 		uniqueUser.setRoles(ulist);
-		
+
+		uniqueUser1 = new User();
+		uniqueUser1.setId(UUID.randomUUID().toString());
+		uniqueUser1.setName("Test U1");
+		uniqueUser1.setPassword("password");
+		uniqueUser1.setAddress1("Address1");
+		uniqueUser1.setAddress2("Address2");
+		uniqueUser1.setAddress3("Address3");
+		uniqueUser1.setCity("SG City");
+		uniqueUser1.setState("SG State");
+		uniqueUser1.setCountry("SG");
+		uniqueUser1.setMobile("Mobile");
+		uniqueUser1.setHomePhone("HomePhoneNo");
+		uniqueUser1.setEmailAddress("emailAddress");
+		ArrayList<Role> ulist1 = new ArrayList<Role>();
+		ulist1.add(new Role("presenter") );
+		ulist1.add(new Role("producer") );
+		uniqueUser1.setRoles(ulist);
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		try
+		{
+		userDao = new UserDaoImpl();
+		userDao.delete(uniqueUser);
+		userDao.delete(uniqueUser1);
+		}
+		catch(Exception ex){}
 	}
 
 	@Test
 	public void testLoad() {
 		userDao = new UserDaoImpl();
 		user1 = new User();
-		user1.setId("dogbert");
+		user1.setId("catbert");
 		
 		try{
 		userDao.load(user1);
 		List<Role> roles = user1.getRoles();
-		Assert.assertEquals(roles.size(),2);
-		Assert.assertEquals(roles.get(0).getRole(), "presenter");
-		Assert.assertEquals(roles.get(1).getRole(), "producer");
+		Assert.assertTrue(user1.getId().equals(user.getId()));
+		Assert.assertTrue(user1.getPassword().equals(user.getPassword()));
+		Assert.assertTrue(user1.getName().equals(user.getName()));
+		Assert.assertTrue(roles.size()==user1.getRoles().size());
 		//notfound
 		try{
 			User tUser = new User();
@@ -92,15 +119,8 @@ public class TestUserDAO {
 		
 		try{
 				List<User> users = userDao.loadAll();
-				for(User user : users){
-					if(user.getId().equals("dogbert")){
-						List<Role> roles = user.getRoles();
-						Assert.assertEquals(roles.size(),2);
-						Assert.assertEquals(roles.get(0).getRole(), "presenter");
-						Assert.assertEquals(roles.get(1).getRole(), "producer");				
-					}
-				}
-				Assert.assertEquals(users.size(),userDao.countAll());
+				int rows=userDao.countAll();
+				Assert.assertEquals(users.size(),rows);
 		}
 		catch(Exception ex) {
 			Assert.fail();
@@ -159,12 +179,9 @@ public class TestUserDAO {
 		
 		try{
 			
-				Date newDate = new Date();
+				userDao.create(uniqueUser1);
 				
-				uniqueUser.setId(newDate.toString() + "_change");
-				userDao.create(uniqueUser);
-				
-				User luser = userDao.getObject(uniqueUser.getId());
+				User luser = userDao.getObject(uniqueUser1.getId());
 				luser.setPassword("NewPassword");
 				luser.setName("new Name");
 				luser.setAddress1("New Address1");
@@ -183,7 +200,7 @@ public class TestUserDAO {
 				
 				userDao.save(luser);
 				
-				User uuser = userDao.getObject(uniqueUser.getId());
+				User uuser = userDao.getObject(uniqueUser1.getId());
 				
 				Assert.assertEquals(luser.getId(), uuser.getId());
 				Assert.assertEquals(luser.getPassword(), uuser.getPassword());
@@ -230,17 +247,20 @@ public class TestUserDAO {
 		
 		try{
 			
-				Date newDate = new Date();
-				
-				uniqueUser.setId(newDate.toString() + "_delete");
+				String strIDSave= uniqueUser.getId();
+				String newID = strIDSave + "1";
+				uniqueUser.setId(newID);
 				userDao.create(uniqueUser);
+				//restore
+				uniqueUser.setId(strIDSave);
 				
-				User luser = userDao.getObject(uniqueUser.getId());
+				User luser = userDao.getObject(newID);
+				
 				Assert.assertTrue(luser!=null);
 				userDao.delete(luser);
 				try
 				{
-					luser = userDao.getObject(uniqueUser.getId());	
+					luser = userDao.getObject(newID);	
 					Assert.fail();
 				}
 				catch(NotFoundException ex){
