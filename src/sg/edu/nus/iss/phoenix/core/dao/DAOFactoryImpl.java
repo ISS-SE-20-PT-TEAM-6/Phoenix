@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.phoenix.core.dao;
 
+import sg.edu.nus.iss.phoenix.maintainschedule.dao.ScheduleDao;
+import sg.edu.nus.iss.phoenix.maintainschedule.dao.impl.ScheduleDaoImpl;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAOImpl;
 import sg.edu.nus.iss.phoenix.user.dao.RoleDao;
@@ -11,6 +13,7 @@ public class DAOFactoryImpl {
 	private UserDao userDAO = new UserDaoImpl();
 	private RoleDao roleDAO = new RoleDaoImpl();
 	private RadioProgramDAO rpdao = new RadioProgramDAOImpl();
+	private ScheduleDao scheduledao = new ScheduleDaoImpl();
 
 	public UserDao getUserDAO() {
 		// TODO Auto-generated method stub
@@ -25,6 +28,11 @@ public class DAOFactoryImpl {
 	public RadioProgramDAO getRadioProgramDAO() {
 		// TODO Auto-generated method stub
 		return rpdao;
+	}
+
+	public ScheduleDao getScheduleDAO() {
+		// TODO Auto-generated method stub
+		return scheduledao;
 	}
 
 }

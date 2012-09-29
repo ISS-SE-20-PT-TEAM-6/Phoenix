@@ -122,9 +122,9 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		connection = openConnection();
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year,1,1);
-		Date fromDate = (Date)calendar.getTime();
+		Date fromDate = new Date(calendar.getTime().getTime());
 		calendar.set(year,12,31);
-		Date toDate = (Date)calendar.getTime();
+		Date toDate = new Date(calendar.getTime().getTime());
 		String sql = "SELECT * FROM SCHEDULE WHERE programDate between ? and ? ORDER BY programDate, startTime ASC ";
 		PreparedStatement stmt = null;
 
@@ -132,8 +132,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		stmt.setDate(1,fromDate);
 		stmt.setDate(2,toDate);
 		
-		List<Schedule> searchResults = listQuery(this.connection
-				.prepareStatement(sql));
+		List<Schedule> searchResults = listQuery(stmt);
 
 		return searchResults;
 	}
@@ -151,20 +150,47 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		String sql = "SELECT * FROM SCHEDULE WHERE programDate between ? and ? ORDER BY programDate, startTime ASC";
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(firstDateOfWeek);
-		Date fromDate = (Date)calendar.getTime();
+		Date fromDate = new Date(calendar.getTime().getTime());
 		calendar.add(Calendar.DATE,6);
-		Date toDate = (Date)calendar.getTime();
+		Date toDate = new Date(calendar.getTime().getTime());
 		PreparedStatement stmt = null;
 
 		stmt = this.connection.prepareStatement(sql);
 
-		stmt = this.connection.prepareStatement(sql);
 		stmt.setDate(1,fromDate);
 		stmt.setDate(2,toDate);
 		
 
-		List<Schedule> searchResults = listQuery(this.connection
-				.prepareStatement(sql));
+		List<Schedule> searchResults = listQuery(stmt);
+
+		return searchResults;
+	}
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * sg.edu.nus.iss.phoenix.authenticate.dao.impl.RoleDao#loadAll(java.sql
+	 * .Connection)
+	 */
+	@Override
+	public List<Schedule> loadDaily(java.util.Date scheduleDate) throws SQLException {
+		connection = openConnection();
+		String sql = "SELECT * FROM SCHEDULE WHERE programDate >= ? and programDate< ? ORDER BY programDate, startTime ASC";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(scheduleDate);
+
+		java.sql.Date fromDate = new Date(calendar.getTime().getTime());
+		calendar.add(Calendar.DATE,1);
+		Date toDate = new Date(calendar.getTime().getTime());
+		PreparedStatement stmt = null;
+
+		stmt = this.connection.prepareStatement(sql);
+
+		stmt.setDate(1,fromDate);
+		stmt.setDate(2,toDate);
+		
+
+		List<Schedule> searchResults = listQuery(stmt);
 
 		return searchResults;
 	}
@@ -191,7 +217,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 			valueObject.setScheduleID(scheduleIDIn);
 			stmt.setString(1, scheduleIDIn);
 			stmt.setString(2, valueObject.getProgramName());
-			stmt.setDate(3, (Date)valueObject.getProgramDate());
+			java.sql.Date sDate = new java.sql.Date(valueObject.getProgramDate().getTime());
+			stmt.setDate(3, sDate);
 			stmt.setString(4, valueObject.getPresenter());
 			stmt.setString(5, valueObject.getProducer());
 			stmt.setTime(6, valueObject.getStartTime());
@@ -236,7 +263,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 			
 			stmt.setString(1, scheduleIDIn);
 			stmt.setString(2, valueObject.getProgramName());
-			stmt.setDate(3, (Date)valueObject.getProgramDate());
+			stmt.setDate(3, new Date(valueObject.getProgramDate().getTime()));
 			stmt.setString(4, valueObject.getPresenter());
 			stmt.setString(5, valueObject.getProducer());
 			stmt.setTime(6, valueObject.getStartTime());
@@ -495,7 +522,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 		ArrayList<Schedule> searchResults = new ArrayList<Schedule>();
 		ResultSet result = null;
-		connection = openConnection();
+		//connection = openConnection();
 		try {
 			result = stmt.executeQuery();
 

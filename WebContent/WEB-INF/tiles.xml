@@ -27,5 +27,8 @@
 	</definition>
 	<definition name="userListPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/user/userlist.jsp" />
+	</definition>
+	<definition name="scheduledProgramPage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/schedule/scheduledprogram.jsp" />
 	</definition>	
 </tiles-definitions>

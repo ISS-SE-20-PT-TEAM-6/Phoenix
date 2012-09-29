@@ -66,6 +66,14 @@ public interface ScheduleDao {
 	public abstract List<Schedule> loadWeekly(Date firstDateOfWeek) throws SQLException;
 
 	/**
+	 * LoadDaily-method. This will read weekly schedule from database table and
+	 * build a List containing valueObjects. 
+	 * @param firstDateOfWeek The first date of the week.
+	 * @param conn         This method requires working database connection.
+	 */
+	public abstract List<Schedule> loadDaily(Date scheduleDate) throws SQLException;
+
+	/**
 	 * create-method. This will create new row in database according to supplied
 	 * valueObject contents. Make sure that values for all NOT NULL columns are
 	 * correctly specified. Also, if this table does not use automatic surrogate-keys

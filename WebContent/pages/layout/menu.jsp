@@ -54,6 +54,14 @@
 				</a>
 			</td>
 	</tr>
+
+	<tr>
+		<td>
+				<a href="<c:url value="/controller/scheduledprogram"/>"> <fmt:message
+						key="caption.menu.scheduledprogram" />
+				</a>
+			</td>
+	</tr>
 	</c:if>
 	<tr>
 		<td><a href="<c:url value="/controller/logout"/>"> <fmt:message
