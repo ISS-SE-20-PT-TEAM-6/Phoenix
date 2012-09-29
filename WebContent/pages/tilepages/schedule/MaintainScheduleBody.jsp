@@ -67,16 +67,14 @@
 	   
    }
    
-   function afterScheduleSearch(scheduleId,programName,presenterName,
-			  producerName,programDate,startTime,endTime){
-	   
-	   document.getElementById('scheduleId').value=scheduleId ;
-	   document.getElementById('programName').value=programName;
-	   document.getElementById('programDate').value=programDate;
-	   document.getElementById('presenterName').value=presenterName;
-	   document.getElementById('producerName').value=producerName;
-	   document.getElementById('startTime').value=startTime;
-	   document.getElementById('endTime').value=endTime;
+   function afterScheduleSearch(schedule){
+	   document.getElementById('scheduleId').value=schedule.scheduleid ;
+	   document.getElementById('programName').value=schedule.programName;
+	   document.getElementById('programDate').value=schedule.programDate;
+	   document.getElementById('presenterName').value=schedule.presenterName;
+	   document.getElementById('producerName').value=schedule.producerName;
+	   document.getElementById('startTime').value=schedule.startTime;
+	   document.getElementById('endTime').value=schedule.endTime;
 	   
 
 	   

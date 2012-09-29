@@ -16,7 +16,7 @@
 	type="text/css" />
 <script src="../javascript/jquery.js"></script>
 <script src="../javascript/bootstrap-datepicker.js"></script>
-<script src="../avascript/jquery-datatable.js"></script>
+<script src="../javascript/jquery-datatable.js"></script>
 </head>
 <body>
 <div>
@@ -102,12 +102,25 @@ $(document).ready(function() {
 		var val = $("#selectedProgram").val();
 		$.ajax({
 			  url: "${pageContext.request.contextPath}/controller/selectschedule?scheduleID=" + val,
+			  dataType: "json",
+			  async: true,
 			  beforeSend: function ( xhr ) {
 			    alert('before');
 			  }
 			}).done(function ( data ) {
-				alert("done");
-			    window.close();
+				alert('success');
+				var jsonO = $.parseJSON(data.responseText);
+				if (self.opener){
+					self.opener.afterScheduleSearch(jsonO);
+			    	window.close();
+				}
+			}).error(function ( data ) {
+				var jsonO = $.parseJSON(data.responseText);
+				if (self.opener){
+					self.opener.afterScheduleSearch(jsonO);
+			    	window.close();
+				}
+				console.log(data);
 			});
 		
 	});
