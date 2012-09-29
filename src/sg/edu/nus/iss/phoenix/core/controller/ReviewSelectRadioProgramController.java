@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sg.edu.nus.iss.phoenix.radioprogram.delegate.RPDelegate;
+import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
+
 
 
 public class ReviewSelectRadioProgramController extends HttpServlet {
@@ -52,13 +55,10 @@ public class ReviewSelectRadioProgramController extends HttpServlet {
 		rd.forward(request, response);
 	}
 	
-	private ArrayList<String> getProgramBeanList(){
-		ArrayList<String> programList = new ArrayList<String>();
+	private ArrayList<RadioProgram> getProgramBeanList(){
+		return new RPDelegate().findAllRP();
 		
-		programList.add("Love Birds");
-		programList.add("Sound Track");
 		
-		return programList;
 		
 	}
 

@@ -2,12 +2,16 @@ package sg.edu.nus.iss.phoenix.core.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sg.edu.nus.iss.phoenix.core.delegate.PresenterProducerDelegate;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 
 
@@ -47,15 +51,20 @@ public class ReviewSelectPresenterProducerController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String pathInfo = request.getPathInfo();
 		String action = FCUtilities.stripPath(pathInfo);
-		if(action.equals("select")){
-			//request.setAttribute("programList", getProgramBeanList());
+		
+		try{
+			if(action.equals("select")){
+				//request.setAttribute("programList", getProgramBeanList());
+				List<User> presenterList = new PresenterProducerDelegate().searchPresenterProducer(); 
+				
+				request.setAttribute("presenterList", presenterList);
+			}
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/SearchPresenterProducer.jsp");
+			rd.forward(request, response);
+		}catch(Exception exp){
 			
-			ArrayList<String> list = new ArrayList<String>();
-			list.add("Shiv");
-			request.setAttribute("presenterList", list);
 		}
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/SearchPresenterProducer.jsp");
-		rd.forward(request, response);
+		
 	}
 
 }

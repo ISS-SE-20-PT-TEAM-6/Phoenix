@@ -104,7 +104,7 @@
 </c:if>
 <tr>
       <td><fmt:message key="label.schedule.program"/></td>
-	  <td><input type="text" id="programName" name="programName" value="${param['name']}"  size=15 maxlength=20>
+	  <td><input type="text" id="programName" name="programName" value="${param['name']}"  size=15 maxlength=45>
 	  <img style="cursor:hand;" 
              onClick="javaScript:searchProgram();" src="${pageContext.request.contextPath}/img/search.gif" /></td>
 	  
@@ -114,11 +114,11 @@
 </tr>
 <tr>
       <td><fmt:message key="label.schedule.presenter" /></td>
-	  <td><input type="text" id="presenterName" name="presenterName" value="${param['name']}" size=15 maxlength=20>
+	  <td><input type="text" id="presenterName" name="presenterName" value="${param['name']}" size=15 maxlength=45>
 	  <img style="cursor:hand;" 
              onClick="javaScript:searchPresenter();" src="${pageContext.request.contextPath}/img/search.gif" /></td>
 	   <td><fmt:message key="label.schedule.producer" /></td>
-     <td><input type="text" id="producerName" name="producerName" value="${param['name']}" size=15 maxlength=20>
+     <td><input type="text" id="producerName" name="producerName" value="${param['name']}" size=15 maxlength=45>
      <img style="cursor:hand;" 
              onClick="javaScript:searchProducer();" src="${pageContext.request.contextPath}/img/search.gif" /></td>
 </tr>

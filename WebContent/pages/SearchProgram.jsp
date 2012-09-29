@@ -32,12 +32,12 @@
 <td></td>
   <th align="left"><b> <fmt:message key="label.programSearch.programName" /></b></th>
  </tr>
-<c:forEach items="${programList}" var="program">
+<c:forEach items="${programList}" var="programBean">
 
-<tr style="cursor:hand;" ondblclick="javaScript:onDblClickTR('${program}');" onClick="javaScript:onSelectTR('${program}');" onMouseOver="this.bgColor='silver';" onMouseOut="this.bgColor='white';" >
+<tr style="cursor:hand;" ondblclick="javaScript:onDblClickTR('${programBean.name}');" onClick="javaScript:onSelectTR('${programBean.name}');" onMouseOver="this.bgColor='silver';" onMouseOut="this.bgColor='white';" >
 
 <td width='10%' align='left'><input type="radio" id ='radio' name ='radio' /></td>
-  <td> ${program}</td>
+  <td> ${programBean.name}</td>
   
   </tr>  
 </c:forEach>
