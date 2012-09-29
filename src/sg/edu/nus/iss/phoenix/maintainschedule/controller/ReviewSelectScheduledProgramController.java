@@ -33,7 +33,7 @@ public class ReviewSelectScheduledProgramController extends HttpServlet {
      */
     public ReviewSelectScheduledProgramController() {
         super();
-        // TODO Auto-generated constructor stub
+        initializeDelegate();
     }
 
 	/**
@@ -63,21 +63,17 @@ public class ReviewSelectScheduledProgramController extends HttpServlet {
 	private void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws DAOException {
 		String searchSchedule = "/pages/schedule/scheduledprogram.jsp";
-		String home = "/pages/home.jsp";
+		String maintain = "/pages/home.jsp";
 		String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
 		RequestDispatcher rd = request.getRequestDispatcher(searchSchedule);
-		
-		String event = request.getParameter("event");
-		if(event==null){
-			
-		}
 		
 		try 
 		{
 			if(selection.equals("scheduled")){
+				request.getSession().removeAttribute("searchrpslist");
+				request.getSession().removeAttribute("selectedschedule");
 				rd.forward(request, response);
 			}else if(selection.equals("search")){
-				initializeDelegate();
 				
 				ScheduleSearchObject sso = new ScheduleSearchObject();
 				sso.setProgramName(request.getParameter("programName"));
@@ -96,6 +92,15 @@ public class ReviewSelectScheduledProgramController extends HttpServlet {
 				}
 				
 				rd.forward(request, response);
+			}else if(selection.equals("scheduleselected")){
+				String scheduleID = request.getParameter("scheduleID");
+				System.out.println(scheduleID);
+				if(!scheduleID.isEmpty()){
+					Schedule schedule = scheduleDelegate.searchProgram(scheduleID);
+					request.getSession().setAttribute("selectedschedule", schedule);
+				}
+				RequestDispatcher rdmaintain = request.getRequestDispatcher(maintain);
+				rdmaintain.forward(request, response);
 			}
 		} 
 		catch (ServletException e) 

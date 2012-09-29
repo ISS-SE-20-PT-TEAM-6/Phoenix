@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
+import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.maintainschedule.dao.ScheduleDao;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.Schedule;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ScheduleSearchObject;
@@ -28,7 +29,7 @@ public class ScheduleSerivce {
 		rdao = factory.getRadioProgramDAO();
 	}
 
-	public List<Schedule> searchProgram(ScheduleSearchObject searchObj) throws ParseException, SQLException {
+	public List<Schedule> searchPrograms(ScheduleSearchObject searchObj) throws ParseException, SQLException {
 		if(searchObj.getEndDate().isEmpty() && !searchObj.getStartDate().isEmpty()){
 			
 			DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
@@ -36,6 +37,16 @@ public class ScheduleSerivce {
 			return scheduleDAO.loadWeekly(d);
 		}else{
 			return scheduleDAO.loadAll();
+		}
+	}
+
+	public Schedule searchProgram(String scheduleID) {
+		try {
+			return scheduleDAO.getObject(scheduleID);
+		} catch (NotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 

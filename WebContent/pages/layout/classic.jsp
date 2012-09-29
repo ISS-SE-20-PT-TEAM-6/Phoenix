@@ -9,6 +9,7 @@
 	type="text/css" />
 <script src="/phoenix/javascript/jquery.js"></script>
 <script src="/phoenix/javascript/bootstrap-datepicker.js"></script>
+<script src="/phoenix/javascript/jquery-datatable.js"></script>
 <table class="borderAll">
 	<tr>
 		<td colspan="2"><tiles:insertAttribute name="header" /></td>
@@ -26,17 +27,3 @@
 		<td colspan="2"><tiles:insertAttribute name="footer" /></td>
 	</tr>
 </table>
-<script type="text/javascript">
-$('.datepicker').datepicker();
-
-/* Table initialisation */
-$(document).ready(function() {
-	$('#sortTable').dataTable( {
-		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
-	} );
-} );
-</script>

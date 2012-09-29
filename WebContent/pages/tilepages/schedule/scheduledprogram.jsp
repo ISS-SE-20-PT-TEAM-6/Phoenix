@@ -40,8 +40,11 @@
 	  </div>
 	</form>
 	<c:if test="${! empty  searchrpslist}">
-		<table id="sortTable">
+	<table cellpadding="0" cellspacing="0" border="0" class="display" id="sortTable">
+	<thead>
+	
 			<tr>
+				<th>Select</th>
 				<th><fmt:message key="label.programslot.programName" /></th>
 				<th><fmt:message key="label.programslot.programDate" /></th>
 				<th><fmt:message key="label.programslot.presenter" /></th>
@@ -49,19 +52,50 @@
 				<th><fmt:message key="label.programslot.startTime" /></th>
 				<th><fmt:message key="label.programslot.endTime" /></th>
 			</tr>
+	</thead>
+	<tbody>
 			<c:forEach var="programslot" items="${searchrpslist}" varStatus="status">
-				<tr class="${status.index%2==0?'even':'odd'}">
-					<td class="nowrap">${programslot.programName}</td>
-					<td class="nowrap">${programslot.programDate}</td>
-					<td class="nowrap">${programslot.presenter}</td>
-					<td class="nowrap">${programslot.producer}</td>
-					<td class="nowrap">${programslot.startTime}</td>
-					<td class="nowrap">${programslot.endTime}</td>
+				<tr class="odd gradeX">
+					<td><input type="radio" name="programId" value="${programslot.scheduleID}" class="programId"/></td>
+					<td>${programslot.programName}</td>
+					<td>${programslot.programDate}</td>
+					<td>${programslot.presenter}</td>
+					<td>${programslot.producer}</td>
+					<td>${programslot.startTime}</td>
+					<td>${programslot.endTime}</td>
 				</tr>
 			</c:forEach>
+		</tbody>
 		</table>
+	<form id="selectSchedule" action="${pageContext.request.contextPath}/controller/selectschedule" method=post>
+		<div class="control-group">
+	    <div class="controls">
+	     <input type="submit" value="Select" class="btn btn-primary" />
+	    </div>
+	  </div>
+		<input type="hidden" name="scheduleID" id="selectedProgram" />
+	</form>
 	</c:if>
 </div>
+<script type="text/javascript">
+$('.datepicker').datepicker();
 
+/* Table initialisation */
+$(document).ready(function() {
+	$('#sortTable').dataTable( {
+		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",
+		"bFilter":false,
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	} );
+	
+	$('.programId').click( function() {
+        $("#selectedProgram").val(this.value);
+        
+    } );
+} );
+</script>
 </body>
 </html>

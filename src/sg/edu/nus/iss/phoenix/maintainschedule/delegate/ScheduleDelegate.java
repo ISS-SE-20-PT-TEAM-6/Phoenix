@@ -18,6 +18,10 @@ public class ScheduleDelegate {
 	}
 
 	public List<Schedule> searchProgramSlots(ScheduleSearchObject searchObj) throws ParseException, SQLException{
-		return scheduleService.searchProgram(searchObj);
+		return scheduleService.searchPrograms(searchObj);
+	}
+
+	public Schedule searchProgram(String scheduleID) {
+		return scheduleService.searchProgram(scheduleID);
 	}
 }
