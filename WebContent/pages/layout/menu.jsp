@@ -20,10 +20,15 @@
 <li>
 
 			<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
-					key="caption.menu.selectuser" />
+					key="caption.menu.modifyuser" />
 			</a>
 </li>
+<li>
 
+			<a href="<c:url value="/controller/loaduser"/>"> <fmt:message
+					key="caption.menu.deleteuser" />
+			</a>
+</li>
 </c:if>
 <c:if test="${sessionScope.user.roles[0].role=='manager'}">
 <li>
@@ -51,11 +56,11 @@
  <a href="<c:url value="/controller/initMaintainSchedule?option=createByCopy" />"> 
 	  <fmt:message key="title.createByCopySchedule"/></a>
 </li>
-
+<!-- 
 <li>
  <a href="<c:url value="/controller/initMaintainSchedule?option=createByCopy" />"> 
 	  <fmt:message key="title.createByCopySchedule"/></a>
-</li>
+</li>  -->
 <li>
 <a href="<c:url value="/controller/initMaintainSchedule?option=modify" />"> 
 	  <fmt:message key="title.modifySchedule"/></a>
