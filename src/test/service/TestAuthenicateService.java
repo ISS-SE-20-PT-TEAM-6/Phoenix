@@ -37,7 +37,7 @@ public class TestAuthenicateService {
 	@Test
 	public void test() {
 		user1 = new User();
-		user1.setId("catSbert");
+		user1.setId("catbert");
 		user1.setPassword("catbert");
 		AuthenticateService service = new AuthenticateService();
 		user1 = service.validateUserIdPassword(user1);

@@ -43,7 +43,9 @@ public class TestUserService {
 	private void deleteDummyUser() {
 		try {
 			System.out.println("Deleting dummy user");
-			userService.deleteUser("alfred");
+			User dummyUser = new User();
+			dummyUser.setId("alfred");
+			userService.deleteUser(dummyUser);
 		} catch (UserNotFoundException e) {
 			//Nothing to do
 		}
@@ -140,8 +142,8 @@ public class TestUserService {
 	public void testCreateExistingUser() {
 		try {
 			User user = new User();
-			user.setId("alfred");
-			user.setName("Alfred");
+			user.setId("dogbert");
+			user.setName("Dogbert 2");
 			user.setPassword("password");
 			user.setAddress1("My dummy address");
 			user.setCity("City");

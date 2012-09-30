@@ -58,6 +58,14 @@ public class UserService {
 	 */
 	public void createUser(User user) throws UserAlreadyExistsException {
 		try {
+			try {
+				User existingUser = udao.getObject(user.getId());
+				if(existingUser != null) {
+					throw new UserAlreadyExistsException("User already exists in the system");
+				}
+			} catch (NotFoundException e) {
+				//This means User not found. Then we are good.
+			}
 			udao.create(user);
 		} catch (SQLException e) {
 			log.severe("Error occured while getting all users :"+ e.getMessage());
